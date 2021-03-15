@@ -18,18 +18,32 @@ class App extends React.Component {
           this.setState(( {theme} ) => ({
             theme: theme === 'light' ? 'dark' : 'light'
           }))
-        }
+        },
+
+        mode: 'popular'
     }
+
+
+    this.switchComponenet = this.switchComponenet.bind(this)
   }
 
+  switchComponenet(compType) {
+    this.setState({ mode: compType })
+  }
+
+
   render() {
+    //console.log(this.state.mode)
+
     return (
       <ThemeProvider value={this.state}>
         <div className={this.state.theme}>
           <div className='container'>
-            <Nav />
-
-            <Battle />
+            <Nav switchComponent={this.switchComponenet} selected={this.state.mode} />
+            {this.state.mode === 'battle' ?
+            <Battle /> :
+            <Popular />
+            }
           </div>
         </div>
       </ThemeProvider>

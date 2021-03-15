@@ -1,10 +1,9 @@
 import React from 'react'
+import { FaRegBell } from 'react-icons/fa';
 import { ThemeConsumer } from '../contexts/theme'
 
+export default function Nav ({switchComponent, selected}) {
 
-
-export default function Nav () {
-    console.log('I am invisible')
     // render-prop pattern! 
     return (
         <ThemeConsumer>
@@ -19,6 +18,30 @@ export default function Nav () {
                         {theme === 'light' ? '🌙' : '💡'}
 
                     </button>
+
+
+                    <button
+                        style={'popular' === selected ? { color: 'rgb(0, 200, 200)' } : null}
+                        className='btn-clear nav-link-big'
+                        onClick={() => (
+                            switchComponent('popular')
+                            )}
+                    >
+                        Popular
+                    </button>
+
+
+                    <button
+                        style={'battle' === selected ? { color: 'rgb(0, 200, 200)' } : null}
+                        className='btn-clear nav-link-big'
+                        onClick={() => switchComponent('battle')}
+                    >
+                        Battle
+                    </button>
+
+
+
+                    
                 </nav>
             )}
         </ThemeConsumer>
